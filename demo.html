@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Demo</title>
+	<style>
+		html {
+		    overflow: hidden;
+		    height: 100%;
+		}
+
+		body {
+		    height: 100%;
+		    overflow: auto;
+		}
+
+		#ilh div{
+			min-width: 300px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<script src="infiniteScroll.js"></script>
+	<script>
+		m=(...n)=>n.map(t=>this[t]=(...p)=>(n=document.createElement(t),p.map(p=>p+''=={}?Object.assign(n,p):n.append(p)),n))
+
+		m('div')
+
+		let il = div({style: "height: 300px; overflow: scroll;margin: 0;padding:0;"})
+		document.body.append(il)
+
+		let ilh = div({id: "ilh",
+			style: "overflow: scroll;display: flex;width: 600px;margin: 0;padding:0;"})
+		document.body.append(ilh)
+
+		function loadItems(id){
+			// if(id<0){return}
+			// if(id>10){return}
+			let limit = 10;
+			let loaded = limit, list = div();
+			while (loaded--) {
+				list.appendChild(div(`item number is ${id} and id ${limit - loaded}`))
+			}
+
+			return list
+		}
+
+		let lic = new InfiniteList(il, loadItems, 0)
+		let lich = new InfiniteList(ilh, loadItems, 0, 2, false)
+	</script>
+</body>
+</html>
