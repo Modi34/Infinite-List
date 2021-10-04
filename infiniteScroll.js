@@ -73,3 +73,13 @@ class InfiniteList{
 		this.removeLI()
 	}
 }
+
+
+function LazyInfiniteScroll(parent, callback){
+	parent.onscroll = e=>{
+		if(parent.scrollHeight - parent.scrollTop - parent.offsetHeight <= 100){
+			callback()
+		}
+	}
+	callback()
+}
